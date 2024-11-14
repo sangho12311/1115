@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+
+    <!-- v-bind: 속성명 하고 ="변수"
+    :속성명 = "변수"
+
+    왜 사용하냐? HTML속성을 vue의 데이터와 동적을 바인딩(연결)하기 위해.  -->
+
+    <div id="app">
+        <!-- 1. v-bind:src -->
+       <img :src="imageSrc"> 
+
+
+        <!-- 2. v-bind:href -->
+         <!-- myUrl 변구 값이 변경되면 링크주소도 자동으로 업데이트 -->
+        <a :href="myUrl">Go to url</a>
+
+
+         
+        <!-- 3. 동적 속성 바인딩  -->
+         <p :[dynamicattr]="dynamicValue">Dynamicduo</p>
+        
+
+    </div>
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    
+    <script>
+        const{createApp, ref} = Vue
+        
+        const app = createApp({
+                setup(){
+                    const imageSrc = ref('https://picsum.photos/200')
+                    const myUrl = ref('https://www.naver.com')
+                    const dynamicattr = ref('title')
+                    const dynamicValue = ref('Hello')
+                    
+
+                    return{
+                        imageSrc,
+                        myUrl,
+                        dynamicattr,
+                        dynamicValue
+
+                    }
+                }
+
+
+            })
+        
+
+    app.mount('#app')
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    const user = {
+      name: 'Alice',
+      greeting: function () {
+        return 'hello'
+      }
+    }
+
+    // optional-chaining의 목적?
+    // user.address.street ---> 우리가 원하는건 undefined가 나온다. 근데 TypeError 발생 
+
+    // 그러면 목적은 중첩 객체에 접근할 때 에러없이 접근하기 위해서 사용한다. 
+
+    // console.log(user.address && user.address.street0)
+    console.log(user.address?.street)
+    console.log(myObj?.address)
+  </script>
+</body>
+
+</html>

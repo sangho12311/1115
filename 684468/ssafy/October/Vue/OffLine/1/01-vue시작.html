@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+ <div id = "app">
+  <!-- {{}}: 콧수염괄호 : 변수의 값을 화면에 표시-->
+  <h1>{{message}}</h1>
+  <!-- v-on:click, @click은 같은거 클릭이벤트 감지 -->
+  <button @click="count++">
+    Count is: {{ count }}
+  </button>
+ </div>
+
+
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script>
+    // vue에 필요한 함수들을가져올건데 구조분해할당을 할거다. 
+    // createApp : vue앱 생성하는 함수 
+    // ref :반응형 변수 생성
+    const{  createApp  , ref } = Vue
+
+    const app = createApp({
+      setup(){
+        //ref 반응형 변수로 message를 생성, 초기값이 'Hello vue!'
+        const message = ref('Hello vue!')
+        // const count = ref(0)
+        //setup 함수에서 사용할 변수를 반환해야한다 반드시 return이 있어야한다. 
+        return{
+          message,count
+        }
+
+      }
+    })
+
+    //vue에서 앱(app)을 생성 ---> div태그의 #app과 연결 
+    // 연결하는걸 마운트라고 한다
+    app.mount('#app')
+
+  </script>
+</body>
+
+</html>

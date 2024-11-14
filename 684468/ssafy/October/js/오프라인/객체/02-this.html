@@ -1,0 +1,114 @@
+<!-- this-keyword.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // Method & this 예시
+    const person = {
+      name: 'Alice',
+      greeting: function () {
+        return `Hello my name is ${this.name}`
+      },
+    }
+
+    console.log(person.greeting()) 
+
+    // 단순호출과 메서드호출을 나눈 이유
+    // this함ㅅ는 함수를 "어떻게 호출하느냐 " 에 따라 실행시점이 다르다.
+    // 이걸 동적할당이라고 부름 
+
+    // 1.1 단순 호출
+    // window객체와 document객체의 차이
+    // window 객체 안에 document 객체를 포함 ---> window.document
+    // document 객체는 웹페이지의 HTML을 담고 있는 객체
+
+    const myFunc = function(){
+      return this 
+    }
+    console.log(myFunc())
+
+
+    // 1.2 메서드 호출
+    const myObj = {
+      data : 1,
+      myFunc(){
+        return this
+      }
+    }
+
+    console.log(myObj.myFunc())
+
+
+    // 2. 중첩된 함수
+    // 2.1 일반 함수
+
+    const myObj2= {
+      number : [1,2,3],
+      myFunc(){
+        // numbers.foreach ---> 1,2,3(3번 반복)
+        this.number.forEach(function(number){
+          console.log(this) // 문제점 발생. 중첩된 함수에서의 this ---> window를 가르킨다. 
+                            //함수안에 함수가 되어있을때 this는 window를 가르킨다. 
+        })
+      }
+    }
+
+    //메서드
+    myObj2.myFunc() // window window window
+
+
+
+    // 메서드호출
+
+
+
+
+    // 2.2 화살표 함수
+    // 중첩 함수에서의 this의 문제점 때문에 사용하는게 화살표 함수이다.
+    // 중첩된 함수가 화살표 함수일 경우 부모함수의  this를 가져온다. 
+
+    const myObj3 = {
+      numbers : [1, 2, 3],
+        myFunc () {
+          this.numbers.forEach((nums) => {
+            console.log(this)
+          })
+        }
+      }
+      
+      myObj3.myFunc()
+
+
+      
+      // 함수 ---> 화살표 함수
+      // for ---> forEach
+      // 왜 js는 축약하는거 좋아할까? <--- 콜백함수 때문이다
+
+      // numbers = [1, 2, 3]
+      // for number in numbers:
+      //    print(number)
+
+      const myObj4 = {
+        numbers : [1, 2, 3],
+        myFunc(){
+          this.numbers.forEach((number) => {
+            console.log(number)
+          })
+        }
+      }
+      myObj4.myFunc()
+
+
+
+  </script>
+</body>
+
+</html>
